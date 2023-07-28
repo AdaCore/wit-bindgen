@@ -55,6 +55,13 @@ enum Opt {
         #[clap(flatten)]
         args: Common,
     },
+        #[cfg(feature = "ada")]
+    Ada {
+        #[clap(flatten)]
+        opts: wit_bindgen_ada::Opts,
+        #[clap(flatten)]
+        args: Common,
+    }
 }
 
 #[derive(Debug, Parser)]
@@ -93,6 +100,8 @@ fn main() -> Result<()> {
         Opt::TeavmJava { opts, args } => (opts.build(), args),
         #[cfg(feature = "go")]
         Opt::TinyGo { opts, args } => (opts.build(), args),
+        #[cfg(feature = "ada")]
+        Opt::Ada { opts, args } => (opts.build(), args),
     };
 
     gen_world(generator, &opt, &mut files)?;

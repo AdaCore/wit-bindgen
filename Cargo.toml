@@ -36,6 +36,7 @@ wit-parser = "0.9.0"
 wit-component = "0.12.0"
 
 wit-bindgen-core = { path = 'crates/core', version = '0.9.0' }
+wit-bindgen-ada = { path = 'crates/ada', version = '0.0.0' }
 wit-bindgen-c = { path = 'crates/c', version = '0.9.0' }
 wit-bindgen-rust = { path = "crates/rust", version = "0.9.0" }
 wit-bindgen-teavm-java = { path = 'crates/teavm-java', version = '0.9.0' }
@@ -52,6 +53,7 @@ name = "wit-bindgen"
 anyhow = { workspace = true }
 clap = { workspace = true }
 wit-bindgen-core = { workspace = true }
+wit-bindgen-ada = { workspace = true, features = ['clap'], optional = true }
 wit-bindgen-rust = { workspace = true, features = ['clap'], optional = true }
 wit-bindgen-c = { workspace = true, features = ['clap'], optional = true }
 wit-bindgen-markdown = { workspace = true, features = ['clap'], optional = true }
@@ -68,12 +70,14 @@ default = [
   'markdown',
   'teavm-java',
   'go',
+  'ada',
 ]
 c = ['dep:wit-bindgen-c']
 rust = ['dep:wit-bindgen-rust']
 markdown = ['dep:wit-bindgen-markdown']
 teavm-java = ['dep:wit-bindgen-teavm-java']
 go = ['dep:wit-bindgen-go']
+ada = ['dep:wit-bindgen-ada']
 
 [dev-dependencies]
 heck = { workspace = true }
